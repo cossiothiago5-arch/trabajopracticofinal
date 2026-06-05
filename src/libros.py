@@ -5,7 +5,6 @@ Define la clase Libro que representa un libro en el sistema de la biblioteca.
 """
 
 from datetime import datetime
-from src.decoradores import validar_datos
 
 
 class Libro:
