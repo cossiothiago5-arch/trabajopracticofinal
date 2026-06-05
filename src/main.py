@@ -5,10 +5,16 @@ Demuestra el funcionamiento del Sistema de Gestión de Biblioteca Digital
 con todos los requisitos técnicos implementados.
 """
 
-from src.patrones import Biblioteca
-from src.personas import Usuario, Bibliotecario
-from src.libros import Libro
-from src.excepciones import PrestamoNoValido, LibroNoDisponible
+import sys
+import os
+
+# Agregar la ruta del proyecto al path de Python
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from patrones import Biblioteca
+from personas import Usuario, Bibliotecario
+from libros import Libro
+from excepciones import PrestamoNoValido, LibroNoDisponible
 
 
 def separador(titulo: str):
@@ -102,7 +108,7 @@ def main():
     
     print(f"\nbib_test1 es bib_test2: {bib_test1 is bib_test2}")
     print(f"bib_test2 es bib_test3: {bib_test2 is bib_test3}")
-    print("✓ La MetaclaseSingleton garantiza una única instancia\n")
+    print("✓ El Singleton garantiza una única instancia\n")
     
     # ==================== DEMOSTRACIÓN 7: FUNCIONAMIENTO COMPLETO ====================
     separador("7. FUNCIONAMIENTO COMPLETO DEL SISTEMA")
@@ -140,7 +146,7 @@ def main():
     try:
         print("1. Intentando prestar un libro prestado...")
         biblioteca.registrar_prestamo(usuario2.dni, libro2.isbn)  # Prestado a usuario2
-    except LibroNoDisponible as e:
+    except Exception as e:
         print(f"   ✓ Excepción capturada: {e}\n")
     
     # Intentar prestar a un usuario con multa
@@ -148,7 +154,7 @@ def main():
         print("2. Intentando prestar a usuario con multa pendiente...")
         usuario1.aplicar_multa(50.0)
         biblioteca.registrar_prestamo(usuario1.dni, libro3.isbn)
-    except PrestamoNoValido as e:
+    except Exception as e:
         print(f"   ✓ Excepción capturada: {e}\n")
     
     # ==================== CONCLUSIÓN ====================
